@@ -3,6 +3,7 @@
     ----------  /jquery.antonydev.tech/  ------------------------
     ----------  /01-udemy/  -------------------------------------
     ----------  /01-jquery-master-javascript-clasico/  ----------
+    ----------  /proyecto-jquery/  ------------------------------
     ----------  /src/main.js  -----------------------------------
     -------------------------------------------------------------
 */
@@ -14,7 +15,7 @@
  */
 
 
-import { cdnJQuery_4_0_0_min} from './libs/jquery/cdn/cdn-jquery-4.0.0.min.js';
+import { cdnJQuery_3_1_1_min } from './libs/jquery/cdn/cdn-jquery-3.1.1.min.js';
 import { loadJQueryByCdnOLocal } from "./libs/jquery/load/load-jquery-by-cdn-local.js";
 
 
@@ -23,7 +24,6 @@ import { loadJQueryUIByCdnOLocal } from "./libs/jquery-ui/load/load-jquery-ui-by
 
 import { spaWithMethodLoadFromJQueryPlugins } from "./plugins/spa-with-method-load-from-jquery/v2/jquery.spa-with-method-load-from-jquery.js";
 import { spaProyectoJQuery } from './spa/spa-proyecto-jquery.js';
-//import { bxSlider } from './plugins/bxslider-4-4.2.17/dist/jquery.bxslider-module.js';
 
 
 
@@ -92,14 +92,14 @@ document.addEventListener('DOMContentLoaded', () => {
  * @type {CDNJQuery}
  */
 
-const cdnJQuery = cdnJQuery_4_0_0_min;
+const cdnJQuery = cdnJQuery_3_1_1_min;
 
 /**
  *  - Ruta del `Archivo jQuery local` a usar como fallback si el CDN falla.
  *  @type {string}
  */
 
-const localJQuery = "./libs/jquery/local/jquery-4.0.0-beta.min.js";
+const localJQuery = "/01-udemy/01-jquery-master-javascript-clasico/proyecto-jquery/src/libs/jquery/local/jquery-4.0.0-beta.min.js";
 
 
 
@@ -121,8 +121,7 @@ const cdnJQueryUI = cdnJQueryUI_1_14_1_min;
  *  - Ruta del `Archivo jQuery UI local` a usar como fallback si el CDN falla.
  *  @type {string}
  */
-const localJQueryUI = "./libs/jquery-ui/local/jquery-ui-1.14.1.min.js";
-
+const localJQueryUI = "/01-udemy/01-jquery-master-javascript-clasico/proyecto-jquery/src/libs/jquery-ui/local/jquery-ui-1.14.1.min.js";
 
 
 /* 
@@ -172,14 +171,27 @@ loadJQueryByCdnOLocal(cdnJQuery, localJQuery)
 
                         //  -----  Ejecuta plugin que carga el contenido dinámico  -----
                         spaWithMethodLoadFromJQueryPlugins();
-                        
+
                         //  -----  Ejecuta script principal del proyecto  -----
                         spaProyectoJQuery();
 
-                        //bxSlider();
                         
+                        //  -----  Carga bxSlider y slider.js en orden  -----
+                        // loadScript(scriptBxSlider)
+                            
+                        //     //  -----  Carga slider.js después de bxSlider  -----
+                        //     .done(() => loadScript(scriptSlider)) 
+                            
+                        //     .done(() => {
+                                
+                        //         //  -----  Inicializamos solo cuando el layout esté listo -----
+                        //         initBxSliderAfterLayout();
+                        //     });
+
+
+
                         //  ----- Limpia la consola después de 10 segundos  -----
-                        setTimeout(() => console.clear(), 10000);
+                        //setTimeout(() => console.clear(), 10000);
 
                     });
 
@@ -193,4 +205,3 @@ loadJQueryByCdnOLocal(cdnJQuery, localJQuery)
          *  @param {Error} err 
          */
         err => console.error("Error al cargar jQuery o jQuery UI:", err));
-
